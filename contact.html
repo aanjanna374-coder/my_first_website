@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Support | SafeGuard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root { --navy:#102a43; --ink:#17324d; --muted:#6b7c93; --teal:#0f766e; --dark-teal:#0b5d57; --line:#dce7ee; }
+    .contact-page { min-height:100vh; background:#f6fafb; color:var(--ink); font-family:"DM Sans",Arial,sans-serif; }
+    .contact-page nav { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:18px clamp(22px,6vw,90px); background:rgba(16,42,67,.98); }
+    .brand { display:flex; align-items:center; gap:10px; color:#fff; font-family:Outfit,sans-serif; font-size:1.12rem; font-weight:700; text-decoration:none; white-space:nowrap; }
+    .brand-mark { display:grid; width:34px; height:34px; place-items:center; border-radius:11px; background:#f28c65; color:#fff; font-size:1.15rem; }
+    .links { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:7px; }
+    .contact-page nav .links a { margin:0; padding:9px 13px; border-radius:8px; color:#dbe9f2; font-size:.88rem; font-weight:600; text-decoration:none; transition:.2s ease; }
+    .contact-page nav .links a:hover,.contact-page nav .links a.active { background:rgba(255,255,255,.14); color:#fff; }
+    .contact-hero { position:relative; overflow:hidden; padding:74px clamp(22px,8vw,120px) 122px; background:linear-gradient(120deg,#102a43,#175b69 70%,#188878); color:#fff; }
+    .contact-hero:after { position:absolute; right:7%; bottom:-150px; width:340px; height:340px; border:1px solid rgba(255,255,255,.17); border-radius:50%; box-shadow:0 0 0 28px rgba(255,255,255,.04),0 0 0 58px rgba(255,255,255,.03); content:""; }
+    .eyebrow { margin:0 0 14px; color:#9ee7d7; font-size:.78rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; }
+    .contact-hero h1 { position:relative; z-index:1; max-width:650px; margin:0 0 14px; font-family:Outfit,sans-serif; font-size:clamp(2.4rem,5vw,4.5rem); line-height:1.05; }
+    .contact-hero p:not(.eyebrow) { position:relative; z-index:1; max-width:580px; margin:0; color:#d7edf0; font-size:1.08rem; line-height:1.7; }
+    .response-status { position:relative; z-index:1; display:inline-flex; align-items:center; gap:8px; margin-top:25px; padding:8px 12px; border:1px solid rgba(255,255,255,.2); border-radius:999px; background:rgba(255,255,255,.1); color:#e8fffa; font-size:.78rem; font-weight:700; }
+    .response-status:before { width:8px; height:8px; border-radius:50%; background:#7ee2a8; box-shadow:0 0 0 4px rgba(126,226,168,.16); content:""; }
+    .contact-wrap { position:relative; z-index:2; display:grid; grid-template-columns:.82fr 1.18fr; gap:28px; max-width:1100px; margin:-64px auto 70px; padding:0 22px; }
+    .info-card,.form-card { border:1px solid rgba(220,231,238,.8); border-radius:22px; background:#fff; box-shadow:0 18px 45px rgba(16,42,67,.10); }
+    .info-card { padding:32px; background:linear-gradient(155deg,#e9f8f4,#fff 65%); }
+    .info-card h2,.form-card h2 { margin:0 0 10px; font-family:Outfit,sans-serif; font-size:1.55rem; }
+    .info-card>p,.form-card>p { margin:0 0 26px; color:var(--muted); line-height:1.6; }
+    .helpline { display:flex; align-items:center; gap:14px; padding:14px 0; border-top:1px solid rgba(15,118,110,.13); color:inherit; text-decoration:none; transition:transform .2s ease; }
+    .helpline:hover { transform:translateX(4px); }
+    .helpline-icon { display:grid; width:40px; height:40px; flex:0 0 40px; place-items:center; border-radius:12px; background:#fff; color:var(--teal); font-size:1.15rem; box-shadow:0 5px 15px rgba(15,118,110,.1); }
+    .helpline strong,.helpline span { display:block; } .helpline strong { margin-bottom:2px; font-size:.95rem; } .helpline span { color:var(--muted); font-size:.84rem; } .helpline b { margin-left:auto; color:var(--dark-teal); font-size:1.05rem; }
+    .call-label { display:block; margin-top:24px; color:var(--muted); font-size:.76rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+    .form-card { padding:34px; } .form-header { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; } .form-badge { padding:7px 10px; border-radius:8px; background:#eef8f6; color:var(--dark-teal); font-size:.73rem; font-weight:700; white-space:nowrap; }
+    .contact-form { display:grid; grid-template-columns:1fr 1fr; gap:18px; } .field { display:flex; flex-direction:column; gap:7px; } .field.full,.form-actions { grid-column:1/-1; } .field label { color:var(--ink); font-size:.86rem; font-weight:700; }
+    .field input,.field textarea { width:100%; box-sizing:border-box; margin:0; border:1px solid var(--line); border-radius:10px; background:#fbfdfe; color:var(--ink); font:inherit; outline:none; transition:.2s ease; } .field input { height:48px; padding:0 14px; } .field textarea { min-height:128px; padding:13px 14px; resize:vertical; } .field input:focus,.field textarea:focus { border-color:#4eb8a6; background:#fff; box-shadow:0 0 0 4px rgba(78,184,166,.14); }
+    .form-actions { display:flex; align-items:center; gap:16px; margin-top:2px; } .send-button { width:auto; margin:0; padding:13px 25px; border-radius:10px; background:var(--teal); font:inherit; font-weight:700; transition:.2s ease; } .send-button:hover { background:var(--dark-teal); transform:translateY(-1px); } #responseMessage { min-height:22px; margin:0; font-size:.9rem; font-weight:600; }
+    .contact-page footer { display:block!important; margin:0; padding:24px; background:var(--navy); color:#bcd0dc; text-align:center; font-size:.86rem; } .footer-links { margin-top:8px; } .footer-links a { color:#9ee7d7; text-decoration:none; }
+    @media(max-width:760px) { .contact-page nav { align-items:flex-start; flex-direction:column; } .links { justify-content:flex-start; } .contact-hero { padding-top:52px; padding-bottom:106px; } .contact-wrap { grid-template-columns:1fr; margin-top:-48px; } }
+    @media(max-width:500px) { .contact-form { grid-template-columns:1fr; } .field.full,.form-actions { grid-column:auto; } .form-card,.info-card { padding:24px; } .form-header { display:block; } .form-badge { display:inline-block; margin-bottom:18px; } }
+  </style>
+</head>
+<body class="contact-page">
+  <nav aria-label="Main navigation">
+    <a class="brand" href="index.html"><span class="brand-mark">&#10022;</span> SafeGuard</a>
+    <div class="links"><a href="index.html">Home</a><a href="report.html">Report</a><a href="safety.html">Safety</a><a href="gallery.html">Gallery</a><a class="active" href="contact.html">Contact</a></div>
+  </nav>
+  <header class="contact-hero">
+    <p class="eyebrow">We are here to help</p>
+    <h1>Let's keep your community safe.</h1>
+    <p>Have a question, suggestion, or need support? Reach out to our disaster response team and we'll get back to you as soon as possible.</p>
+    <span class="response-status">Support team online &middot; Typical reply in 1 business day</span>
+  </header>
+  <main class="contact-wrap">
+    <aside class="info-card">
+      <h2>Emergency support</h2><p>For immediate assistance, contact the service that can respond fastest to your situation.</p>
+      <a class="helpline" href="tel:100"><span class="helpline-icon">&#10010;</span><div><strong>Police</strong><span>Safety and security</span></div><b>100</b></a>
+      <a class="helpline" href="tel:108"><span class="helpline-icon">&#9829;</span><div><strong>Ambulance</strong><span>Medical emergencies</span></div><b>108</b></a>
+      <a class="helpline" href="tel:101"><span class="helpline-icon">&#9830;</span><div><strong>Fire &amp; rescue</strong><span>Fire-related emergencies</span></div><b>101</b></a>
+      <a class="helpline" href="tel:112"><span class="helpline-icon">&#9888;</span><div><strong>Disaster management</strong><span>National emergency help</span></div><b>112</b></a>
+      <span class="call-label">Tap a number to call from your phone</span>
+    </aside>
+    <section class="form-card">
+      <div class="form-header"><div><h2>Send us a message</h2><p>We typically respond within one business day.</p></div><span class="form-badge">Secure form</span></div>
+      <form class="contact-form" id="contactForm">
+        <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" placeholder="e.g. Priya Sharma" required></div>
+        <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com" required></div>
+        <div class="field full"><label for="message">How can we help?</label><textarea id="message" name="message" placeholder="Tell us what you need help with..." required></textarea></div>
+        <div class="form-actions"><button class="send-button" type="submit">Send message&nbsp; &#8594;</button><p id="responseMessage" role="status" aria-live="polite"></p></div>
+      </form>
+    </section>
+  </main>
+  <footer>&copy; 2025 SafeGuard Disaster Management System &middot; Stay alert. Stay safe.<div class="footer-links"><a href="safety.html">View safety guidance</a></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>
